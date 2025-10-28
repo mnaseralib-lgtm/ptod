@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#1976d2"/>
+  <link rel="manifest" href="manifest.json">
+  <title>New Attend App</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- html5-qrcode library -->
+  <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1 id="appTitle">New Attend App</h1>
+    <button id="menuBtn" class="icon-btn" aria-label="قائمة">☰</button>
+  </header>
+
+  <aside id="sidebar" class="sidebar hidden">
+    <nav>
+      <a href="#" id="homeLink">الرئيسية</a>
+      <a href="#" id="reportsLink">التقارير</a>
+      <a href="#" id="readmeLink">تعليمات</a>
+    </nav>
+  </aside>
+
+  <main class="container">
+    <section class="card" id="mainCard">
+      <div class="counter-row">
+        <h2>New Attend App</h2>
+        <div id="counter">المسحات: <span id="scannedCount">0</span></div>
+      </div>
+
+      <label for="actionType">نوع الحركة</label>
+      <select id="actionType">
+        <option value="دخول">دخول</option>
+        <option value="انصراف">انصراف</option>
+        <option value="انصراف مسائى">انصراف مسائى</option>
+      </select>
+
+      <div class="scanner">
+        <div id="preview" style="width:100%"></div>
+        <div class="camera-controls">
+          <button id="startBtn">تشغيل المسح</button>
+          <button id="stopBtn" disabled>إيقاف المسح</button>
+        </div>
+      </div>
+
+      <label for="manualInput">ادخال رقم الموظف يدوياً</label>
+      <input id="manualInput" type="text" inputmode="numeric" maxlength="14" placeholder="أدخل رقم الموظف (حتى 14 رقم)">
+
+      <div class="row">
+        <button id="submitManual">إرسال</button>
+      </div>
+
+      <div id="lastMsg" class="msg"></div>
+    </section>
+
+    <section id="reportsPage" class="card hidden">
+      <h2>التقارير</h2>
+      <label for="reportType">نوع التقرير</label>
+      <select id="reportType">
+        <option value="employee">تقرير لموظف</option>
+        <option value="day">تقرير يوم</option>
+        <option value="range">تقرير فترة زمنية</option>
+      </select>
+
+      <div id="employeeBlock" class="report-block">
+        <label for="employeeId">رقم الموظف</label>
+        <input id="employeeId" maxlength="14" inputmode="numeric">
+      </div>
+
+      <div id="dayBlock" class="report-block hidden">
+        <label for="dayDate">اختر اليوم</label>
+        <input id="dayDate" type="date">
+      </div>
+
+      <div id="rangeBlock" class="report-block hidden">
+        <label for="fromDate">من</label>
+        <input id="fromDate" type="date">
+        <label for="toDate">الى</label>
+        <input id="toDate" type="date">
+      </div>
+
+      <div class="row">
+        <button id="getReport">جلب التقرير</button>
+        <button id="downloadXLS" disabled>تنزيل كـ Excel</button>
+      </div>
+
+      <div id="reportResult" class="table-wrap"></div>
+    </section>
+
+    <section id="readmePage" class="card hidden">
+      <h2>تعليمات سريعة</h2>
+      <ol>
+        <li>أنشئ Google Sheet به ورقتين: <strong>QRData</strong> و <strong>Database</strong>.</li>
+        <li>انسخ كود google_apps_script.gs إلى Apps Script داخل الشيت وانشر كـ Web App (Anyone).</li>
+        <li>إذا استخدمت GitHub Pages -- الكود يستخدم corsproxy.io لتجاوز CORS تلقائياً.</li>
+        <li>لتشغيل محلياً استخدم: <code>python -m http.server 8000</code></li>
+      </ol>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').catch(function(){});
+    }
+  </script>
+</body>
+</html>
