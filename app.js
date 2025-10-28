@@ -1,7 +1,7 @@
 
 // app.js - New Attend App (supports QR scanning and reports)
 // Using corsproxy to avoid CORS when hosted on GitHub Pages
-const GOOGLE_SCRIPT_URL = "https://corsproxy.io/?https://script.google.com/macros/s/AKfycbz0vNZg6eCWm-bJ-LOKqY_YqvEUDTyasqy5UF6QvWgUf7xFpxqfJ7pu2QhuKtgjSW7u/exec";
+const GOOGLE_SCRIPT_URL = "https://corsproxy.io/?https://script.google.com/macros/s/AKfycbz_33oCNVBU4GhEIe2NzD0aKdyH4h18EJN42FFWg6FZO594acj2K2vyIOAfZNzYe4hW/exec";
 
 const startBtn = document.getElementById('startBtn');
 const stopBtn = document.getElementById('stopBtn');
